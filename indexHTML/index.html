@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercícios HTML</title>
+    <style>
+      #conteudo {
+        padding: 30px 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Exercícios HTML</h1>
+    </header>
+    <nav>
+      <a href wm-nav="exercicios/teste.html">00 - Teste</a>
+      <a href wm-nav="exercicios/texto1.html">01 - Texto 1</a>
+      <a href wm-nav="exercicios/texto2.html">02 - Texto 2</a>
+      <a href wm-nav="exercicios/listas.html">03 - Listas</a> 
+      <a href wm-nav="exercicios/listasAninhadas.html">04 - ListasAninhadas</a>     
+      <a href wm-nav="exercicios/links.html">05 - Links</a>    
+      <a href wm-nav="exercicios/tabela.html">06 - Tabela</a>     
+      <a href wm-nav="exercicios/form/form.html">07 - Formulário</a> 
+
+    </nav>
+    <section id="conteudo"></section>
+    <footer>
+      Curso de Web Moderno
+    </footer>
+    <script>
+      document.querySelectorAll("[wm-nav]").forEach((link) => {
+        link.onclick = function (e) {
+          e.preventDefault(); //previne o comportamento padrão e guarda o dado
+          //console.log("Ação"); //pega em ajax, joga o conteúdo e jogando a área no conteúdo
+
+          const conteudo = document.getElementById("conteudo"); //obtive o conteudo
+          fetch(link.getAttribute("wm-nav")) //requisição ajax
+            .then((resp) => resp.text()) //pega o conteudo html e retorna o valor textual
+            .then((html) => (conteudo.innerHTML = html)); //substitui o conteudo da section
+        };
+      });
+    </script>
+  </body>
+</html>
